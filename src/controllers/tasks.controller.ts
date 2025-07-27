@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import TasksService from '@/services/tasks.service';
-import { Task, TaskData } from '@/types/task.types';
+import { TaskData } from '@/types/task.types';
+import { TaskDataSchema } from '@/types/task.types';
+import { ZodError } from 'zod';
 
 /**
  * Контроллер для обработки http запросов к сервису задач
@@ -47,23 +49,27 @@ class TasksController {
      */
     public createTask(req: Request, res: Response) {
         try {
-            const taskData: TaskData = req.body;
+            const taskData: TaskData = TaskDataSchema.parse(req.body);
             const newTask = TasksService.createTask(taskData);
             res.status(201).json({ id: newTask.id, createdDate: newTask.createdDate });
         } catch (error) {
-            res.status(500).json({ message: 'Error creating task' });
+            if (error instanceof ZodError) {
+                res.status(400).json({ message: 'Invalid data' })
+            } else {
+                res.status(500).json({ message: 'Error creating task' });
+            }
         }
     }
 
     /**
      * Изменение задачи
-     * @param req - Express request объект с идентификатором в параметрах
+     * @param req - Express request объект с идентификатором в параметрах и новыми данными задачи
      * @param res - Express response объект
      */
     public updateTask(req: Request, res: Response) {
         try {
             const taskId = parseInt(req.params.id, 10);
-            const taskData: TaskData = req.body;
+            const taskData: TaskData = TaskDataSchema.parse(req.body);
 
             const updatedTask = TasksService.updateTask(taskId, taskData);
 
@@ -73,7 +79,11 @@ class TasksController {
 
             res.status(200).send();
         } catch (error) {
-            res.status(500).json({ message: 'Error updating task' });
+            if (error instanceof ZodError) {
+                res.status(400).json({ message: "Invalid data" })
+            } else {
+                res.status(500).json({ message: 'Error updating task' });
+            }
         }
     }
 
