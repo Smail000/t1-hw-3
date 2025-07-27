@@ -1,4 +1,4 @@
-import tasksRouter from '@/routes/tass.routes';
+import tasksRouter from '@/routes/tasks.routes';
 import express from 'express';
 
 // Функция для инициализации приложения
