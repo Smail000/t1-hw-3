@@ -1,0 +1,38 @@
+{
+  "name": "t1-hw-3",
+  "version": "1.0.0",
+  "main": "src/main.ts",
+  "type": "module",
+  "scripts": {
+    "start": "tsx --env-file=./env/.development ./src/main.ts",
+    "start:prod": "tsx --env-file=./env/.production ./src/main.ts",
+    "dev": "nodemon",
+    "dev:debug": "nodemon --inspect",
+    "lint": "eslint --ext .ts",
+    "lint:fix": "eslint --ext .ts --fix",
+    "format": "prettier --write src"
+  },
+  "keywords": [
+    "API"
+  ],
+  "author": "Smail0x3",
+  "license": "ISC",
+  "description": "API to use tasks (CRUD)",
+  "dependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.1.0",
+    "express": "^5.1.0",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.3",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.6.2",
+    "typescript-eslint": "^8.38.0"
+  }
+}

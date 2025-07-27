@@ -1,0 +1,14 @@
+{
+    "watch": [
+        "src"
+    ],
+    "ext": "ts,json",
+    "ignore": [
+        "src/**/*.spec.ts",
+        "src/**/*.test.ts"
+    ],
+    "exec": "tsx --env-file=./env/.development ./src/main.ts",
+    "execMap": {
+        "ts": "tsx"
+    }
+}
