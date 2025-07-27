@@ -1,3 +1,4 @@
+import { errorMiddleware } from '@/middlewares/error.middleware';
 import tasksRouter from '@/routes/tasks.routes';
 import express from 'express';
 
@@ -10,6 +11,9 @@ const createApp = () => {
 
     // Routes
     app.use('/tasks', tasksRouter);
+
+    // Обработка ошибок
+    app.use(errorMiddleware);
 
     return app;
 };
