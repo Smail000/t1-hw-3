@@ -27,6 +27,7 @@ class TasksService {
     /**
      * Создание задачи
      * @param taskData - Данные задачи
+     * @returns Созданная задача
      */
     public createTask(taskData: TaskData) {
         const newTask: Task = {
@@ -37,6 +38,7 @@ class TasksService {
         };
 
         this.tasks.set(this.tasksCounter++, newTask);
+        return newTask;
     }
 
     /**
