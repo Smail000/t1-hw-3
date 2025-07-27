@@ -34,7 +34,7 @@ class TasksService {
             ...taskData,
             tags: { ...taskData.tags },
             id: this.tasksCounter,
-            createdDate: Date.now()
+            createdDate: Date.now(),
         };
 
         this.tasks.set(this.tasksCounter++, newTask);
@@ -48,15 +48,14 @@ class TasksService {
      * @returns Если задача обновлена корректно, то true, иначе false
      */
     public updateTask(taskId: number, taskData: TaskData): boolean {
-
         const oldTask = this.getTask(taskId);
         if (oldTask === null) return false;
-        
+
         const updatedTask: Task = {
             ...taskData,
             tags: { ...taskData.tags },
             id: oldTask.id,
-            createdDate: oldTask.createdDate
+            createdDate: oldTask.createdDate,
         };
 
         this.tasks.set(taskId, updatedTask);

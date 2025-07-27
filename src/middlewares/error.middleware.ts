@@ -11,7 +11,7 @@ export const errorMiddleware = (
     error: Error,
     req: Request,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
 ) => {
     console.error(error.stack);
     res.status(500).json({ message: 'Internal server error' });

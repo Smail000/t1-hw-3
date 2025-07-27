@@ -51,10 +51,13 @@ class TasksController {
         try {
             const taskData: TaskData = TaskDataSchema.parse(req.body);
             const newTask = TasksService.createTask(taskData);
-            res.status(201).json({ id: newTask.id, createdDate: newTask.createdDate });
+            res.status(201).json({
+                id: newTask.id,
+                createdDate: newTask.createdDate,
+            });
         } catch (error) {
             if (error instanceof ZodError) {
-                res.status(400).json({ message: 'Invalid data' })
+                res.status(400).json({ message: 'Invalid data' });
             } else {
                 res.status(500).json({ message: 'Error creating task' });
             }
@@ -80,7 +83,7 @@ class TasksController {
             res.status(200).send();
         } catch (error) {
             if (error instanceof ZodError) {
-                res.status(400).json({ message: "Invalid data" })
+                res.status(400).json({ message: 'Invalid data' });
             } else {
                 res.status(500).json({ message: 'Error updating task' });
             }
